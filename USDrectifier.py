@@ -6,14 +6,17 @@ import json
 
 
 def main():
-    # Parse the CLI arguments
     parser = argparse.ArgumentParser()
+    # Parse the CLI arguments
     parser.add_argument('-c', '--config_path',
                         help='Path to the config file')
+    parser.add_argument('-ch', '--config_help',
+                        help='An Example config file', action='store_true')
     args = parser.parse_args()
 
     # Handle invalid CLI calls
-
+    if args.config_help:
+        config_help()
     if args.config_path is None:
         config_help()
 
@@ -27,9 +30,10 @@ def load_config(config_path):
 
 
 def config_help():
+    print("Config files are in JSON format and store the path the the USDs and a hash table of the strings to replace.")
     print("Here is an example config file: \n")
     with open("example_config.json", 'r') as config_file:
-        print(config_file.read())
+        print(json.load(config_file))
     exit()
 
 
