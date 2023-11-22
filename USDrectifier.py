@@ -1,5 +1,6 @@
 import argparse
 import os
+import json
 
 # I'm going to start with a shell of how this will work from the console.
 
@@ -17,6 +18,14 @@ def main():
         config_help()
     if args.config_path is None:
         config_help()
+
+    config = load_config(args.config_path)
+    print(config)
+
+
+def load_config(config_path):
+    with open(config_path, 'r') as config_file:
+        return json.load(config_file)
 
 
 def config_help():
