@@ -8,14 +8,12 @@ import json
 def main():
     # Parse the CLI arguments
     parser = argparse.ArgumentParser()
-    parser.add_argument('-help', '-h', '--help', action='store_true')
-    parser.add_argument('-c', '-config', '--config_path',
+    parser.add_argument('-c', '--config_path',
                         help='Path to the config file')
     args = parser.parse_args()
 
     # Handle invalid CLI calls
-    if args.help:
-        config_help()
+
     if args.config_path is None:
         config_help()
 
