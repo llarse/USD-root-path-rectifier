@@ -1,0 +1,4 @@
+{
+    "USDs": ["paths/to/USDs", "orPaths/to/USDa's"],
+    "remap_instructions": {"string to replace": "string to replace it with"}
+}
