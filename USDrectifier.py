@@ -26,32 +26,32 @@ def main():
 def load_config(config_path):
     with open(config_path, 'r') as config_file:
         config = json.load(config_file)
-    if not check_config(config):
-        raise Exception("Invalid config file")
+    check_config(config)
     return config
 
 
 def check_config(config: dict):
     ''' Checks if the config is valid.
-    Args: config (dict): The config to be checked.
-    Returns: bool: True if the config is valid, False otherwise. '''
+    Args: config (dict): The config to be checked. '''
     # Check if the USD_paths is a list
     if not isinstance(config["USD_paths"], list):
-        return False
+        raise Exception(
+            "The USD_paths must be a list, even if its just one path.")
     # Check if the USD_paths is not empty
     if len(config["USD_paths"]) == 0:
-        return False
+        raise Exception("The USD_paths list must not be empty.")
     # Check if the replacement_dict is a dictionary
     if not isinstance(config["replacement_dict"], dict):
-        return False
+        raise Exception("The replacement_dict must be a dictionary")
     # Check if the replacement_dict is not empty
     if len(config["replacement_dict"]) == 0:
-        return False
+        raise Exception("The replacement_dict dictionary must not be empty.")
     # Check if the replacement_dict has the correct keys and values
     for old_path, new_path in config["replacement_dict"].items():
         if not isinstance(old_path, str):
-            return False
-    return True
+            raise Exception("All the old_path must be a string")
+        if not isinstance(new_path, str):
+            raise Exception("All the new_path must be a string")
 
 
 def config_help():
