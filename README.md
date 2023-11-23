@@ -7,6 +7,9 @@ CLI tool for rectifying incorrect paths inside a USD file.  It works by traversi
 
 
 
+## Installation
+
+Clone the project and install pxr or usd-core. This can cause issues for people and doesnt work beyond 3.10 due to the pxr package. For me, running a conda environment in python 3.10 and `pip install usd-core` was enough.     
 ## Usage/Examples
 
 To run the code:
